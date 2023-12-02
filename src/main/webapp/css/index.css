@@ -1,0 +1,173 @@
+div#notice{
+    background-color: #1F4547;
+   height: 70px;
+   position: fixed;
+   width: 100%;
+   z-index: 1;
+   top: 0px;
+   
+   
+}
+div#logo{
+    width:300px;
+    height: 70px;
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    
+}
+div#catalog ul li{
+    padding-right: 40px;
+    list-style: none;
+}
+div#catalog ul li:hover a{
+   color: red;
+   border-bottom: 5px solid orange;
+   transition: all 0.5s ease;
+
+}
+div#catalog ul li a{
+    list-style: none;
+    text-decoration: none;
+    color: wheat;
+    font-size: 20px;
+
+}
+div#search{
+    margin-top: 20px;
+    width: 400px;
+}
+#inputsearch{
+    width: 70%;
+    border-radius: 15px;
+  
+}
+#btnsearch{
+    width: 100px;
+    border-radius: 5px;
+    background-color:antiquewhite ;  margin-left: 15px;
+  
+}
+ div#catalog ul {
+    margin-top: 15px;
+    margin-left: 25px;
+}
+/*
+#cover{
+    height:400px;
+    width: 1120px;
+    margin: 0 auto;
+}
+#carouselExample{
+    width: 100%;
+    height: 100%;
+}
+.carousel-inner{
+    width: 100%;
+    height: 100%;
+} */
+div#carouselExampleIndicators{
+    width: 100%;
+    height: 300px;
+    
+}
+.carousel-inner{
+    width: 100%;
+    height: 300px;
+  
+}
+.slide{
+    width: 100%;
+    height: 450px;
+}
+body
+{
+    background-color: antiquewhite;
+}
+#header{
+    margin-top: 80px;
+}
+div#content
+{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+div#product{
+    width: 100%;
+    height: 100%;
+}
+#item{
+   
+    padding: 20px 20px;
+}
+#item #product{
+   
+    border: 1px solid orange;
+    position: relative;
+    overflow: hidden;
+}
+#buy_now{
+    background-color: orange;
+    position: absolute;
+    bottom: -30px;
+    width: 100%;
+    text-align: center;
+    height: 30px;
+}
+#item #product:hover #buy_now{
+    
+    bottom: 0px;
+    transition: all 0.5s;
+}
+#item #product:hover img{
+    transform: scale(1.05);
+    transition: all 0.5s;
+}
+
+
+
+
+div#footer{
+    width: 90%;
+    margin: 0 auto;
+    background-color: #3f7b7d;
+   
+
+   padding: 20px 20px;
+}
+li{
+    list-style: none;
+}
+ul#list_footer li{
+    color: white;
+}
+div#footer_2{
+    width: 90%;
+    margin: 0 auto;
+    background-color: #203a3b;
+}
+#footer_2 p{
+    text-align: center;
+    color: white;
+}
+#contain{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+ul#list_footer li a{
+    text-decoration: none;
+    color: white;
+}
+ul#list_footer li a:hover{
+    color: black;
+}
+strong{
+    color: bisque;
+}
