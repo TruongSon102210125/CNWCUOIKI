@@ -1,5 +1,8 @@
+<%@page import="model.bean.catagory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="model.bean.product"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +28,7 @@
             <div id="catalog">
                 <ul style="display: flex;">
                     <li><a href="">MyBook</a></li>
-                    <li><a href="">Login</a></li>
+                    <li><a href="login.jsp">Login</a></li>
                     <li><a href="">Sign up</a></li>
                 </ul>
             </div>
@@ -66,125 +69,52 @@
             </div>
         </div>
     </div>
-    <div id="content">
-            <div class="row">
-                    <div class="col-md-12">
-                        <div id="content_item" style="color:red; font-size: 25px; background-color: aquamarine; text-align: center;">
-                            Tài Liệu Lịch Sử
-                        </div>
-                    </div>
-                <div class="col-md-3" id="item">
-                    <div id="product">
-                       
-                        <img src="https://ia903200.us.archive.org/view_archive.php?archive=/23/items/m_covers_0009/m_covers_0009_26.zip&file=0009269962-M.jpg" style="width: 100%; height: 300px;" alt="">
-                        <div id="buy_now">Mua Ngay</div>
-                    </div>
-                </div>
-                <div class="col-md-3" id="item">
-                    <div id="product">
-                     
-                        <img src="img/item1.jpg" style="width: 100%; height: 300px;" alt="">
-                        <div id="buy_now">Mua Ngay</div>
-                    </div>
-                </div>
-                <div class="col-md-3" id="item">
-                    <div id="product">
-                      
-                        <img src="img/item2.jpg" style="width: 100%; height: 300px;" alt="">
-                        <div id="buy_now">Mua Ngay</div>
-                    </div>
-                </div>
-                <div class="col-md-3" id="item">
-                    <div id="product">
-                        
-                        <img src="https://ia903200.us.archive.org/view_archive.php?archive=/23/items/m_covers_0009/m_covers_0009_26.zip&file=0009269962-M.jpg" style="width: 100%; height: 300px;" alt="">
-                        <div id="buy_now">Mua Ngay</div>
-                    </div>
-                </div>
-                <div class="col-md-3" id="item">
-                    <div id="product">
-                     
-                        <img src="img/item1.jpg" style="width: 100%; height: 300px;" alt="">
-                        <div id="buy_now">Mua Ngay</div>
-                    </div>
-                </div>
-                <div class="col-md-3" id="item">
-                    <div id="product">
-                      
-                        <img src="img/item2.jpg" style="width: 100%; height: 300px;" alt="">
-                        <div id="buy_now">Mua Ngay</div>
-                    </div>
-                </div>
-                <div class="col-md-3" id="item">
-                    <div id="product">
-                        
-                        <img src="https://ia903200.us.archive.org/view_archive.php?archive=/23/items/m_covers_0009/m_covers_0009_26.zip&file=0009269962-M.jpg" style="width: 100%; height: 300px;" alt="">
-                        <div id="buy_now">Mua Ngay</div>
-                    </div>
-                </div>
-                
-            </div>
-    </div>
-    <div id="content">
+    	
+    	
+    
+ 		
+ 		
+    	
+   
+   <% 
+    	ArrayList<catagory> catagory =(ArrayList<catagory>)request.getAttribute("catagory");
+    	ArrayList<product> product =(ArrayList<product>)request.getAttribute("product");
+ 		
+ 		%>
+   
+     <div id="content">
+     	
+     	<% for (int i =0 ; i<catagory.size();i++){ %>
+     	
+     	
         <div class="row">
                 <div class="col-md-12">
                     <div id="content_item" style="color:red; font-size: 25px; background-color: aquamarine; text-align: center;">
-                        Tài Liệu Toán Rời Rạc
+                        <%=catagory.get(i).getName() %>
                     </div>
                  
                 </div>
-            <div class="col-md-3" id="item">
-                <div id="product">
-                   
-                    <img src="https://ia903200.us.archive.org/view_archive.php?archive=/23/items/m_covers_0009/m_covers_0009_26.zip&file=0009269962-M.jpg" style="width: 100%; height: 300px;" alt="">
-                    <div id="buy_now">Mua Ngay</div>
-                </div>
-            </div>
-            <div class="col-md-3" id="item">
-                <div id="product">
-                 
-                    <img src="img/item1.jpg" style="width: 100%; height: 300px;" alt="">
-                    <div id="buy_now">Mua Ngay</div>
-                </div>
-            </div>
-            <div class="col-md-3" id="item">
-                <div id="product">
-                  
-                    <img src="img/item2.jpg" style="width: 100%; height: 300px;" alt="">
-                    <div id="buy_now">Mua Ngay</div>
-                </div>
-            </div>
+            
+            <% for (int j =0 ; j<product.size();j++){
+            	if(catagory.get(i).getId()==product.get(j).getCategory_id())
+            	{
+            	%>
             <div class="col-md-3" id="item">
                 <div id="product">
                     
-                    <img src="https://ia903200.us.archive.org/view_archive.php?archive=/23/items/m_covers_0009/m_covers_0009_26.zip&file=0009269962-M.jpg" style="width: 100%; height: 300px;" alt="">
-                    <div id="buy_now">Mua Ngay</div>
+                    <img src="<%=product.get(j).getImg()%>" style="width: 100%; height: 300px;" alt="">
+                    <div id="buy_now"><a href="">Mua Ngay</a></div>
                 </div>
             </div>
-            <div class="col-md-3" id="item">
-                <div id="product">
-                 
-                    <img src="img/item1.jpg" style="width: 100%; height: 300px;" alt="">
-                    <div id="buy_now">Mua Ngay</div>
-                </div>
-            </div>
-            <div class="col-md-3" id="item">
-                <div id="product">
-                  
-                    <img src="img/item2.jpg" style="width: 100%; height: 300px;" alt="">
-                    <div id="buy_now">Mua Ngay</div>
-                </div>
-            </div>
-            <div class="col-md-3" id="item">
-                <div id="product">
-                    
-                    <img src="https://ia903200.us.archive.org/view_archive.php?archive=/23/items/m_covers_0009/m_covers_0009_26.zip&file=0009269962-M.jpg" style="width: 100%; height: 300px;" alt="">
-                    <div id="buy_now">Mua Ngay</div>
-                </div>
-            </div>
+            <%} }%>
             
         </div>
-</div>
+        <% } %>
+        
+	</div>
+    	
+    
+  
     <div id="footer">
       <div id="contain">
         <div id="item_Footer">
