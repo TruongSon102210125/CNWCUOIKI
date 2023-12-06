@@ -40,7 +40,7 @@ div#catalog ul li a{
 }
 div#search{
     margin-top: 20px;
-    width: 578px !important;
+    width: 400px;
 }
 #inputsearch{
     width: 70%;
@@ -170,4 +170,25 @@ ul#list_footer li a:hover{
 }
 strong{
     color: bisque;
+}
+#detail-content{
+    margin-top: 70px;
+  
+}
+.container2{
+    width: 90%;
+    margin: 0 auto;
+
+}
+.right{
+    text-align:  center;
+    padding-top: 30px;
+}
+.right h2{
+    color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    
+} 
+#discription{
+    text-align: start;
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import model.bean.catagory;
 import model.bean.product;
+import model.bean.user;
 import model.dao.DAO;
 
 public class BO {
@@ -25,7 +26,35 @@ public class BO {
 	{
 		return dao.layraProductByCatagory_id(id);
 	}
-	
+	public int checktrung(String username)
+	{
+		return 1;
+	}
+	public void insertUser(int id, String fullname, String password, String email,String phone_number ,int i) throws SQLException
+	{
+		dao.insertUser(id,fullname,password,email,phone_number,i);
+	}
+	public String layfullnamebyemail(String email) throws SQLException
+	{
+		 return dao.layfullnamebyemail(email);
+
+	}
+	public ArrayList<product> layraProductByTitle(String title) throws SQLException
+	{
+		return dao.layraProductByTitle(title);
+	}
+	public ArrayList<product> getdetailProduct(int id_product) throws SQLException
+	{
+		return dao.getdetailProduct(id_product);
+	}
+	public ArrayList<product> getmybook()throws SQLException
+	{
+		return dao.getmybook();
+	}
+	public void deleteMybook (int id_product)throws SQLException
+	{
+		dao.deleteMybook(id_product);
+	}
 
 
 }

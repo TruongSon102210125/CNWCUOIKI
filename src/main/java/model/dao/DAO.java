@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import model.bean.catagory;
 import model.bean.product;
+import model.bean.user;
 
 public class DAO {
 	public static Connection connecttt() throws SQLException
@@ -84,22 +85,14 @@ public class DAO {
 		{
 //			 int ID2=rs.getInt(0);
 			 int category_id=rs.getInt("category_id");
-//			 String title=rs.getString(2);
-//			 String file=rs.getString(3);
-//			 String description=rs.getString(4);
-//			 Date create_at=rs.getDate(5);
-//			 int deleted=rs.getInt(6);
-//			 int user_id=rs.getInt(7);
 			 String img=rs.getString("img");
+			 String title= rs.getString("title");
+			 int id= rs.getInt("id");
 			 product x= new product();
 			 x.setCategory_id(category_id);
-//			 x.setCreate_at(create_at);
-//			 x.setDescription(description);
-//			 x.setUser_id(user_id);
-//			 x.setTitle(title);
-//			 x.setId(ID2);
+			 x.setId(id);
+			 x.setTitle(title);
 			 x.setImg(img);
-//			 x.setDeleted(deleted);
 			 result.add(x);
 		
 		}
@@ -118,13 +111,13 @@ public class DAO {
 			 String title=rs.getString(2);
 			 String file=rs.getString(3);
 			 String description=rs.getString(4);
-			 Date create_at=rs.getDate(5);
+//			 Date create_at=rs.getDate(5);
 			 int deleted=rs.getInt(6);
 			 int user_id=rs.getInt(7);
 			 String img=rs.getString(8);
 			 product x= new product();
 			 x.setCategory_id(category_id);
-			 x.setCreate_at(create_at);
+//			 x.setCreate_at(create_at);
 			 x.setDescription(description);
 			 x.setUser_id(user_id);
 			 x.setTitle(title);
@@ -136,7 +129,112 @@ public class DAO {
 		}
 		return result;
 	}
+	public void insertUser(int id, String fullname, String password, String email,String phone_number ,int i) throws SQLException {
+		Connection conn= DAO.connecttt();
+		Statement st= conn.createStatement();
+		String qr= "insert into `user`(`id`,`fullname`,`email`,`phone_number`,`password`,`role_id`) values('"+id+"','"+fullname+"','"+email+"','"+phone_number+"','"+password+"','"+i+"')";
+		System.out.println(qr);
+		
+		st.executeUpdate(qr);
+		
+	}
+	public String layfullnamebyemail(String email) throws SQLException
+	{
+		System.out.println(email);
 	
+		Connection conn= DAO.connecttt();
+		Statement st= conn.createStatement();
+		ResultSet rs= st.executeQuery("select fullname from user where email='"+email+"'");
+		String email1=null;
+		while (rs.next())
+		{
+			 email1= rs.getString("fullname");
+			 System.out.println(email1);
+		
+		}
+		return email1;
+	}
+	public ArrayList<product> layraProductByTitle(String title1) throws SQLException {
+		ArrayList<product> result= new ArrayList<product>();
+		Connection conn= DAO.connecttt();
+		Statement st= conn.createStatement();
+		String qr;
+		if(title1!=null)
+		{
+			qr="SELECT * FROM `product` WHERE title LIKE '%"+title1+"%'";
+		}
+		else {
+			qr="SELECT * FROM `product`";
+		}
+		
+		ResultSet rs= st.executeQuery(qr);
+		while (rs.next())
+		{
+			 int category_id=rs.getInt("category_id");
+			 String img=rs.getString("img");
+			 String title= rs.getString("title");
+			 product x= new product();
+			 x.setCategory_id(category_id);
+			 x.setTitle(title);
+			 x.setImg(img);
+			 result.add(x);
+		
+		}
+		return result;
+		
+	}
+	public ArrayList<product> getdetailProduct(int id_product) throws SQLException {
+		ArrayList<product> result= new ArrayList<product>();
+		Connection conn= DAO.connecttt();
+		Statement st= conn.createStatement();
+		ResultSet rs= st.executeQuery("select*from product where id='"+id_product+"'");
+		while (rs.next())
+		{
+			
+			 product x= new product();
+			 String desciption= rs.getString("description");
+			 String file =	 rs.getString("file");
+			 String title= rs.getString("title");
+			 x.setTitle(title);
+			 x.setDescription(desciption);
+			x.setFile(file);
+			 result.add(x);
+		
+		}
+		return result;
+	}
+	public ArrayList<product> getmybook() throws SQLException {
+		ArrayList<product> result= new ArrayList<product>();
+		Connection conn= DAO.connecttt();
+		Statement st= conn.createStatement();
+		ResultSet rs= st.executeQuery("SELECT p2.id,p2.description,p2.file,p2.title,p2.img FROM product_select  p1 JOIN product  p2 ON p1.id_product = p2.id");
+		while (rs.next())
+		{
+			
+			 product x= new product();
+			 String desciption= rs.getString("description");
+			 String file =	 rs.getString("file");
+			 String title= rs.getString("title");
+			 String img = rs.getString("img");
+			 int id = rs.getInt("id");
+			 x.setTitle(title);
+			 x.setDescription(desciption);
+			x.setFile(file);
+			x.setImg(img);
+			x.setId(id);
+			 result.add(x);
+		
+		}
+		return result;
+	}
+	public void deleteMybook(int id_product) throws SQLException {
+		
+		Connection conn= DAO.connecttt();
+		Statement st= conn.createStatement();
+		String qr= "delete from product_select where id_product='"+id_product+"'";
+		st.executeUpdate(qr);
+		
+	}
 	
 
 

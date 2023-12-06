@@ -64,17 +64,20 @@ button:hover {
  
  </style>
 	<div class="login-container">
-    <h2>Login</h2>
-    <form action="LoginController" method="post">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required>
-
+    <h2>Register</h2>
+    <form action="SigupController" method="post">
+      <label for="fullname">Full Name:</label>
+      <input type="text" id="fullname" name="fullname" required>
+     <label for="phone">Phone Number:</label>
+      <input type="text" id="phone" name="phone" required> <br>
+      <label for="email">Email Login:</label>
+      <input type="email" id="email" name="email" required> <br>
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" required> <br>
-		<a href="FormSignUp.jsp">Register if you not have account.</a>
+	
 		<br>
 			
-      <button type="submit" name="btnlogin" value="btnlogin">Login</button>
+      <button type="submit" name="btnRegister" value="SignUp">Sign Up</button>
     	
     </form>
   </div>

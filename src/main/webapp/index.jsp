@@ -16,20 +16,37 @@
     <title>Document</title>
 </head>
 <body>
+	<% 
+	 String yourAttribute = (String) session.getAttribute("username");
+	if( session.getAttribute("username")==null) response.sendRedirect("login.jsp");
+			
+	%>
     <div id="notice">
         <div class="container">
             <div id="logo">
                 <img src="css/img/logo1.png" alt="">
             </div>
-            <div id="search">
-                <input type="text" id="inputsearch">
-                <input type="submit" value="search" id="btnsearch">
+            <div id="search" style="min-width: 400px;">
+                <form action="SearchProduct" method="POST">
+              	  <input type="text" id="inputsearch" name = "inputsearch" placeholder="Mời Nhập Tên Tài Liệu ">
+                	<input type="submit" name="btnsearch" value="Search" id="btnsearch">
+              </form>
             </div>
             <div id="catalog">
                 <ul style="display: flex;">
-                    <li><a href="">MyBook</a></li>
-                    <li><a href="login.jsp">Login</a></li>
-                    <li><a href="">Sign up</a></li>
+                    <li><a href="MybookController?id=1">MyBook</a></li>
+                    
+                    <% if(session.getAttribute("username")!=null)
+                    	{%>
+                    	<li><a href="" style="white-space: nowrap;"><%= (String)session.getAttribute("username")%></a></li>
+                    	
+                    	<% }
+                    else{ %>
+                    	<li><a href="login.jsp">Login</a></li>
+                   <% }
+                    	%>
+                    
+                 	<li><a href="xoaSession.jsp" style=" white-space: nowrap;">Log out</a></li>
                 </ul>
             </div>
 
@@ -103,7 +120,8 @@
                 <div id="product">
                     
                     <img src="<%=product.get(j).getImg()%>" style="width: 100%; height: 300px;" alt="">
-                    <div id="buy_now"><a href="">Mua Ngay</a></div>
+                    <p style="color: green; text-align: center; padding-top: 15px;"><%=product.get(j).getTitle()%></p><br>
+                    <div id="buy_now"><a href="DetailProduct?id_product=<%=product.get(j).getId()%>">Mua Ngay</a></div>
                 </div>
             </div>
             <%} }%>

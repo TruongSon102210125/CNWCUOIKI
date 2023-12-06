@@ -37,22 +37,21 @@ public class LoginController extends HttpServlet {
 				check = qlsvbo.checklogin(username, password);
 				if(check>0)
 				{
-//					 HttpSession session = request.getSession();
-//					 session.setAttribute("username", username);
-//					System.out.println("Dang nhap thanh cong");
-//					response.sendRedirect("./index.jsp");
+					String fullname= qlsvbo.layfullnamebyemail(username);
+					 HttpSession session = request.getSession();
+					 session.setAttribute("username", fullname);
 					if(check ==1 )
 					{
 						BO bo = new BO();
 						ArrayList<product> x=null;
 						ArrayList<catagory> y=null;
-						System.out.println("Vao login dc r");
+						
 						try {
 							x = bo.layraProduct();
 							y=bo.layradanhmuc();
 							request.setAttribute("product", x);
 							request.setAttribute("catagory", y);
-							System.out.println("lay ra ca 2");
+							
 							String destination = "/index.jsp";	
 							RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
 							rd.forward(request, response);
