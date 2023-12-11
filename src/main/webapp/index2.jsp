@@ -16,11 +16,15 @@
     <title>Document</title>
 </head>
 <body>
+	<% 
+	 String yourAttribute = (String) session.getAttribute("username");
 
+			
+	%>
     <div id="notice">
         <div class="container">
             <div id="logo">
-                <a href="index2.jsp"><img src="css/img/logo1.png" alt=""></a>
+                <img src="css/img/logo1.png" alt="">
             </div>
             <div id="search" style="min-width: 400px;">
                 <form action="SearchProduct" method="POST">
@@ -30,20 +34,19 @@
             </div>
             <div id="catalog">
                 <ul style="display: flex;">
-                  
+                   
                     
                     <% if(session.getAttribute("username")!=null)
                     	{%>
-                    	<li><a href="index2.jsp" style="white-space: nowrap;"><%= (String)session.getAttribute("username")%></a></li>
-                    	  <li><a href="MybookController?id=1">MyBook</a></li>
+                    	<li><a href="" style="white-space: nowrap;"><%= (String)session.getAttribute("username")%></a></li>
+                    	
                     	<% }
                     else{ %>
                     	<li><a href="login.jsp">Login</a></li>
                    <% }
                     	%>
-                     <% if(session.getAttribute("username")!=null) {%>
-                 	<li><a href="xoaSession.jsp" style=" white-space: nowrap;">Log out</a></li>
-                 <% } %>
+                    
+                 
                 </ul>
             </div>
 
@@ -87,44 +90,23 @@
     	
     
  		
- 		
-    	
-   
-   <% 
-    	ArrayList<catagory> catagory =(ArrayList<catagory>)request.getAttribute("catagory");
-    	ArrayList<product> product =(ArrayList<product>)request.getAttribute("product");
- 		
- 		%>
+
    
      <div id="content">
-     	
-     	<% for (int i =0 ; i<catagory.size();i++){ %>
-     	
-     	
-        <div class="row">
+		  <div class="row">
                 <div class="col-md-12">
                     <div id="content_item" style="color:red; font-size: 25px; background-color: aquamarine; text-align: center;">
-                        <%=catagory.get(i).getName() %>
+                        <h1>Chào mừng ban đến với vua tài liệu !</h1>
+                        <a href="LoadTrangchu?opt=1">Bam vao day</a>
                     </div>
                  
                 </div>
             
-            <% for (int j =0 ; j<product.size();j++){
-            	if(catagory.get(i).getId()==product.get(j).getCategory_id())
-            	{
-            	%>
-            <div class="col-md-3" id="item">
-                <div id="product">
-                    
-                    <img src="<%=product.get(j).getImg()%>" style="width: 100%; height: 300px;" alt="">
-                    <p style="color: green; text-align: center; padding-top: 15px;"><%=product.get(j).getTitle()%></p><br>
-                    <div id="buy_now"><a href="DetailProduct?id_product=<%=product.get(j).getId()%>">Xem Ngay</a></div>
-                </div>
-            </div>
-            <%} }%>
+      
+        
             
         </div>
-        <% } %>
+    
         
 	</div>
     	

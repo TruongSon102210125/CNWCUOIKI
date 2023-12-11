@@ -38,8 +38,14 @@ public class LoginController extends HttpServlet {
 				if(check>0)
 				{
 					String fullname= qlsvbo.layfullnamebyemail(username);
+					int iduser= qlsvbo.layraIdUserByEmail(username);
+				
 					 HttpSession session = request.getSession();
 					 session.setAttribute("username", fullname);
+					 session.setAttribute("iduser", iduser);
+					 System.out.println(username);
+					 System.out.println(fullname);
+					 System.out.println("Chinh thuc id user:"+iduser);
 					if(check ==1 )
 					{
 						BO bo = new BO();

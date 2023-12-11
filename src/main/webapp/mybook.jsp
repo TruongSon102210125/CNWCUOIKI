@@ -19,7 +19,7 @@
 	   <div id="notice">
         <div class="container">
             <div id="logo">
-                <img src="css/img/logo1.png" alt="">
+               <a href="index2.jsp"><img src="css/img/logo1.png" alt=""></a> 
             </div>
             <div id="search">
                 <input type="text" id="inputsearch">
@@ -28,8 +28,10 @@
             <div id="catalog">
                 <ul style="display: flex;">
                     <li><a href="">MyBook</a></li>
-                    <li><a href="">Login</a></li>
-                    <li><a href="">Sign up</a></li>
+                    <% if(session.getAttribute("username")!=null) {%>
+                 	<li><a href="xoaSession.jsp" style=" white-space: nowrap;">Log out</a></li>
+                 <% } %>
+                 		
                 </ul>
             </div>
 

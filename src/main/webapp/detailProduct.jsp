@@ -20,7 +20,7 @@
 	<div id="notice">
         <div class="container">
             <div id="logo">
-                <img src="css/img/logo1.png" alt="">
+               <a href="index2.jsp"><img src="css/img/logo1.png" alt=""></a> 
             </div>
             <div id="search">
                 <input type="text" id="inputsearch">
@@ -28,19 +28,22 @@
             </div>
                  <div id="catalog">
                 <ul style="display: flex;">
-                    <li><a href="MybookController?id=1">MyBook</a></li>
+                   
                     
                     <% if(session.getAttribute("username")!=null)
                     	{%>
                     	<li><a href="" style="white-space: nowrap;"><%= (String)session.getAttribute("username")%></a></li>
-                    	
+                    	 <li><a href="MybookController?id=1">MyBook</a></li>
                     	<% }
                     else{ %>
                     	<li><a href="login.jsp">Login</a></li>
                    <% }
                     	%>
-                    
+                     <% if(session.getAttribute("username")!=null)
+                    	{%>
                  	<li><a href="xoaSession.jsp" style=" white-space: nowrap;">Log out</a></li>
+                 	  <% }
+                    	%>
                 </ul>
             </div>
 
@@ -59,7 +62,7 @@
                     <div class="right" >
                            <h2><%= product.get(i).getTitle()%></h2>
                            <p id="discription"><%= product.get(i).getDescription()%></p>
-   							<div ><a href="">Bấm vào đây để thêm vào danh mục yêu thích!</a></div>
+   							<div ><a href="AddBookLove?id_product=<%=product.get(i).getId()%>">Bấm vào đây để thêm vào danh mục yêu thích!</a></div>
                     </div>
                 </div>
                

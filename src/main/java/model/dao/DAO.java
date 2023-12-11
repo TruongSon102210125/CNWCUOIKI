@@ -195,9 +195,13 @@ public class DAO {
 			 String desciption= rs.getString("description");
 			 String file =	 rs.getString("file");
 			 String title= rs.getString("title");
+			 int id = rs.getInt("id");
+			 
 			 x.setTitle(title);
 			 x.setDescription(desciption);
 			x.setFile(file);
+			x.setId(id);
+		
 			 result.add(x);
 		
 		}
@@ -235,7 +239,54 @@ public class DAO {
 		st.executeUpdate(qr);
 		
 	}
-	
+	public int layraIdUserByEmail(String email) throws SQLException {
+		
+		Connection conn= DAO.connecttt();
+		Statement st= conn.createStatement();
+		ResultSet rs= st.executeQuery("select id from user where email='"+email+"'");
+		int email1=-1;
+		while (rs.next())
+		{
+			email1= rs.getInt("id");
+			 System.out.println("Day la id user"+email1);
+		
+		}
+		return email1;
+	}
+	public ArrayList<product> layrabook(int id_user) throws SQLException {
+		ArrayList<product> result= new ArrayList<product>();
+		Connection conn= DAO.connecttt();
+		Statement st= conn.createStatement();
+//		String qr2= "SELECT p2.id,p2.description,p2.file,p2.title,p2.img FROM product_select  p1 JOIN product  p2 ON p1.id_product = p2.id";
+		String qr="SELECT DISTINCT p.id,p.description,p.file,p.title,p.img FROM product p JOIN product_select ps ON p.id = ps.id_product JOIN user u ON u.id=ps.id_user and ps.id_user='"+id_user+"' ";
+		ResultSet rs= st.executeQuery(qr);
+		System.out.println(qr);
+		while (rs.next())
+		{
+			System.out.println("Vao lap");
+			 product x= new product();
+			 String desciption= rs.getString("description");
+			 String file =	 rs.getString("file");
+			 String title= rs.getString("title");
+			 String img = rs.getString("img");
+			 int id = rs.getInt("id");
+			 x.setTitle(title);
+			 x.setDescription(desciption);
+			x.setFile(file);
+			x.setImg(img);
+			x.setId(id);
+			 result.add(x);
+		
+		}
+		return result;
+	}
+	public void addBooklove(int iduser,int idproduct) throws SQLException
+	{	Connection conn= DAO.connecttt();
+		Statement st= conn.createStatement();
+		String qr= "INSERT INTO `product_select` (`id_product`, `id_user`) VALUES ('"+idproduct+"', '"+iduser+"')";
+		System.out.println(qr);
+		st.executeUpdate(qr);
+	}
 
 
 }

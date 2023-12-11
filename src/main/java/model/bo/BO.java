@@ -39,6 +39,10 @@ public class BO {
 		 return dao.layfullnamebyemail(email);
 
 	}
+	public int  layraIdUserByEmail(String email) throws SQLException
+	{
+		 return dao.layraIdUserByEmail(email);
+	}
 	public ArrayList<product> layraProductByTitle(String title) throws SQLException
 	{
 		return dao.layraProductByTitle(title);
@@ -55,6 +59,16 @@ public class BO {
 	{
 		dao.deleteMybook(id_product);
 	}
+	public ArrayList<product> layrabook(int id_user) throws SQLException
+	{
+		return dao.layrabook(id_user);
+	}
+	public void addBooklove(int iduser,int idproduct) throws SQLException
+	{
+		
+		 dao.addBooklove(iduser, idproduct);
+	}
+	
 
 
 }
